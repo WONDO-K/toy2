@@ -1,6 +1,6 @@
 package com.example.toy2.domain;
 
-import com.example.toy1.domain.enums.InquiryTag;
+import com.example.toy2.domain.enums.InquiryTag;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

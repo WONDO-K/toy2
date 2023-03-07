@@ -1,6 +1,6 @@
 package com.example.toy2.domain;
 
-import com.example.toy1.domain.enums.Role;
+import com.example.toy2.domain.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -45,7 +45,7 @@ public class User {
     private List<Article> articles;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Reply> replies;
+    private List<Reply> replies ;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Inquiry> Inquiries;
