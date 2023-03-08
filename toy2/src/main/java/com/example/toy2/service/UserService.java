@@ -1,6 +1,7 @@
 package com.example.toy2.service;
 
 
+import com.example.toy2.domain.User;
 import com.example.toy2.dto.TokenDto;
 import com.example.toy2.dto.user.LoginRequestDto;
 import com.example.toy2.dto.user.SignUpRequestDto;
@@ -17,6 +18,7 @@ public interface UserService {
 
     boolean checkEmail(String email);
 
-
     TokenDto doLogin(LoginRequestDto requestDto);
+
+    User getMyInfo();
 }

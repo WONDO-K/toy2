@@ -45,6 +45,7 @@ public class UserServiceImpl implements UserService {
         // 문제없으면 저장
         try{
             userRepository.save(user);
+            System.out.println("회원가입 저장 완료");
         // 문제 생기면 오류 발생
         }catch (DataIntegrityViolationException e){
             // DataIntegrityViolationException : 뭔가 잘못된 데이터가 바인딩 되었을때 발생하는 에러이다. SQL 문이 잘못되었거나 Data가 잘못되었을 경우
@@ -100,7 +101,10 @@ public class UserServiceImpl implements UserService {
 
         return tokenDto;
     }
-
+    @Override
+    public User getMyInfo() {
+        return SecurityUtil.getCurrentUsername().flatMap(userRepository :: findByUsername).orElseThrow(UserNotFoundException::new);
+    }
 }
 
 

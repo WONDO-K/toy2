@@ -2,6 +2,7 @@ package com.example.toy2.controller;
 
 import com.example.toy2.dto.TokenDto;
 import com.example.toy2.dto.exception.common.InvalidParameterException;
+import com.example.toy2.dto.exception.user.DuplicateEmailException;
 import com.example.toy2.dto.user.LoginRequestDto;
 import com.example.toy2.dto.user.SignUpRequestDto;
 import com.example.toy2.dto.exception.user.DuplicateIdException;
@@ -38,7 +39,9 @@ public class UserController {
             throw new DuplicateIdException();
         } else if (userService.checkNickname(requestDto.getNickname())) {
             throw new DuplicateNicknameException();
-        } else if (userService.checkEmail(requestDto.getEmail()))
+        } else if (userService.checkEmail(requestDto.getEmail())){
+            throw new DuplicateEmailException();
+        }
         userService.signup(requestDto);
         return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
     }
