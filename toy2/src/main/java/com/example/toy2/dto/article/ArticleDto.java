@@ -7,7 +7,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-@ApiModel(value = "ArticleRespnseDto",description = "게시글 정보 Dto")
+@ApiModel(value = "ArticleResponseDto",description = "게시글 정보 Dto")
 public class ArticleDto {
     private long uid;
     private String title;
@@ -32,5 +32,4 @@ public class ArticleDto {
                 .nickname(article.getUser().getNickname())
                 .build();
     }
-
 }

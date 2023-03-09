@@ -4,11 +4,11 @@ import com.example.toy2.domain.Article;
 import com.example.toy2.domain.User;
 import com.example.toy2.dto.article.ArticleDto;
 import com.example.toy2.dto.article.ArticleRequestDto;
+import com.example.toy2.dto.exception.article.PostNotFoundException;
 import com.example.toy2.repository.ArticleRepository;
 import com.example.toy2.service.ArticleService;
 import com.example.toy2.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -71,4 +71,29 @@ public class ArticleServiceImpl implements ArticleService {
                 .collect(Collectors.toList());
         return list;
     }
+//    @Override
+//    public ArticleDto getArticle(Long uid){
+//        ArticleDto readArticle = ArticleDto.from(articleRepository.findById(uid).orElseThrow(PostNotFoundException::new));
+//
+//        return readArticle;
+//
+//    }
+
+//    @Override
+//    public ArticleDto getArticle(Long uid){
+//        Optional<ArticleDto> article = Optional.ofNullable(ArticleDto.from(articleRepository.findById(uid).orElseThrow(PostNotFoundException::new)));
+//        if (!article.isPresent()) {
+//            Optional<ArticleDto> article1 = Optional.empty();
+//            return article1.get();
+//        }
+//        ArticleDto viewArticle = article.get();
+//        return viewArticle;
+//    }
+    @Override
+    public ArticleDto getArticle(Long uid){
+        Article article = articleRepository.findById(uid).orElseThrow(PostNotFoundException::new);
+        return ArticleDto.from(article);
+    }
+
+
 }

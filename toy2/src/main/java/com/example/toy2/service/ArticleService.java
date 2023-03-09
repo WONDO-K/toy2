@@ -1,10 +1,12 @@
 package com.example.toy2.service;
 
 
+import com.example.toy2.domain.Article;
 import com.example.toy2.dto.article.ArticleDto;
 import com.example.toy2.dto.article.ArticleRequestDto;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ArticleService {
 
@@ -15,4 +17,6 @@ public interface ArticleService {
     List<ArticleDto> getArticleList();
 
     void deleteArticle(Long uid);
+
+    ArticleDto getArticle(Long uid);
 }
