@@ -1,6 +1,7 @@
 package com.example.toy2.controller;
 
 import com.example.toy2.dto.article.ArticleDto;
+import com.example.toy2.dto.article.ArticleListDto;
 import com.example.toy2.dto.article.ArticleRequestDto;
 import com.example.toy2.service.ArticleService;
 import io.swagger.annotations.ApiOperation;
@@ -19,14 +20,14 @@ public class ArticleController {
 
     private final ArticleService articleService;
 //
-//    @GetMapping("/any/articleList")
-//    @ApiOperation(value = "게시글 리스트 조화",notes = "게시글 리스트를 조회한다.")
-//    @ApiResponses({
-//            @ApiResponse(code=200,message = "Sucess",response = ArticleListDto.class)
-//    })
-//    public ResponseEntity<?> getArticleList(){
-//        return new ResponseEntity<>(articleService.getArticleList(), HttpStatus.OK);
-//    }
+    @GetMapping("/any/articleList")
+    @ApiOperation(value = "게시글 리스트 조회",notes = "게시글 리스트를 조회한다.")
+    @ApiResponses({
+            @ApiResponse(code=200,message = "Sucess",response = ArticleListDto.class)
+    })
+    public ResponseEntity<?> getArticleList(){
+        return new ResponseEntity<>(articleService.getArticleList(), HttpStatus.OK);
+    }
 
     @PostMapping("/article")
     @ApiOperation(value = "게시글 작성",notes = "게시글을 작성한다.")
@@ -49,6 +50,17 @@ public class ArticleController {
             ){
         articleService.updateArticle(uid,articleRequestDto);
         return new ResponseEntity<>(HttpStatus.OK);
-
     }
+    @DeleteMapping("/article/delete/{uid}")
+    @ApiOperation(value = "게시글 삭제", notes = "게시글을 삭제한다.")
+    @ApiResponses({
+            @ApiResponse(code = 200,message = "Succes", response = ArticleDto.class)
+    })
+    public ResponseEntity<?> deleteArticle(
+        @PathVariable @ApiParam(value = "게시글 번호 uid",required = true) Long uid
+    ){
+        articleService.deleteArticle(uid);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }

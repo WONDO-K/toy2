@@ -11,13 +11,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ArticleServiceImpl implements ArticleService {
 
     private final ArticleRepository articleRepository;
@@ -44,6 +47,7 @@ public class ArticleServiceImpl implements ArticleService {
             String upDate = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(LocalDateTime.now()).toString();
             if (article.get().getUser() == userService.getMyInfo()){
                 Article newArticle = Article.builder()
+                        .uid(uid)
                         .title(articleRequestDto.getTitle())
                         .content(articleRequestDto.getContent())
                         .tag(articleRequestDto.getTag())
@@ -55,5 +59,16 @@ public class ArticleServiceImpl implements ArticleService {
             }
         }
 
+    }
+    @Override
+    public void deleteArticle(Long uid){
+        articleRepository.deleteById(uid);
+    }
+
+    @Override
+    public List<ArticleDto> getArticleList(){
+        List<ArticleDto> list = articleRepository.findAll().stream().map(m->ArticleDto.from(m))
+                .collect(Collectors.toList());
+        return list;
     }
 }
