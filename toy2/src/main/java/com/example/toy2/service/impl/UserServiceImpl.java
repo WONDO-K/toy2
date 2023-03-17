@@ -102,7 +102,7 @@ public class UserServiceImpl implements UserService {
         return tokenDto;
     }
     @Override
-    public User getMyInfo() {
+    public User  getMyInfo() {
         return SecurityUtil.getCurrentUsername().flatMap(userRepository :: findByUsername).orElseThrow(UserNotFoundException::new);
     }
 }

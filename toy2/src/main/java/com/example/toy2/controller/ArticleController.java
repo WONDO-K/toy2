@@ -28,14 +28,14 @@ public class ArticleController {
         return new ResponseEntity<>(articleService.getArticleList(), HttpStatus.OK);
     }
 
-    @PostMapping("/article")
+    @PostMapping("/create")
     @ApiOperation(value = "게시글 작성",notes = "게시글을 작성한다.")
     public ResponseEntity<?> createArticle(@RequestBody @ApiParam(value = "게시글 생성 Dto",required = true) ArticleRequestDto articleRequestDto){
         articleService.createArticle(articleRequestDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("/article/update/{uid}")
+    @PutMapping("/update/{uid}")
     @ApiOperation(value = "게시글 수정", notes = "게시글을 수정한다.")
     public ResponseEntity<?> updateArticle(
             @PathVariable @ApiParam(value = "게시글 번호 uid",required = true) Long uid,
@@ -44,7 +44,7 @@ public class ArticleController {
         articleService.updateArticle(uid,articleRequestDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @DeleteMapping("/article/delete/{uid}")
+    @DeleteMapping("/delete/{uid}")
     @ApiOperation(value = "게시글 삭제", notes = "게시글을 삭제한다.")
     @ApiResponses({
             @ApiResponse(code = 200,message = "Succes", response = ArticleDto.class)
@@ -55,7 +55,7 @@ public class ArticleController {
         articleService.deleteArticle(uid);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @GetMapping("/article/{uid}")
+    @GetMapping("/{uid}")
     @ApiOperation(value = "게시글 조회", notes = "게시글을 조회한다.")
     public ResponseEntity<ArticleDto> getArticle(@PathVariable Long uid) {
         return new ResponseEntity<>(articleService.getArticle(uid), HttpStatus.OK);
