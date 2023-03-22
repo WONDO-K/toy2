@@ -63,6 +63,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void changePw(String pw){
+        User user = getMyInfo();
+        user.changePw(passwordEncoder.encode(pw));
+        userRepository.save(user);
+    }
+
+    @Override
     public boolean checkId(String username) {
         // user id로 검색 후 존재유무를 bool값으로 전달
         Optional<User> entity = userRepository.findByUsername(username);

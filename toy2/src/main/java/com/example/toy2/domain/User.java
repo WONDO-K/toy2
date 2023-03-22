@@ -60,4 +60,8 @@ public class User {
     public void changeNickname(String newNickname){
         this.nickname = newNickname;
     }
+
+    public void changePw(String pw){
+        this.pw = pw;
+    }
 }

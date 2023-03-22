@@ -47,12 +47,20 @@ public class UserController {
         userService.signup(requestDto);
         return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
     }
-    @PutMapping("/changenick/{username}")
+    @PutMapping("/changenick")
     @ApiOperation(value = "닉네임 변경", notes = "닉네임을 변경한다.")
     public ResponseEntity<String> changeNickename(
             @RequestParam @ApiParam(value = "변경할 닉네임",required = true)String nickname
             ){
         userService.changeNickname(nickname);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @PutMapping("/changepw")
+    @ApiOperation(value = "패스워드 변경", notes = "패스워드를 변경한다.")
+    private ResponseEntity<String> changePassword(
+            @RequestParam @ApiParam(value = "변경할 PW", required = true) String pw
+    ){
+        userService.changePw(pw);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

@@ -24,4 +24,8 @@ public interface UserService {
     User getMyInfo();
 
     void changeNickname(String nickname);
+
+    void changePw(String pw);
+
+
 }
