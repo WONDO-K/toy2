@@ -92,6 +92,8 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public ArticleDto getArticle(Long uid){
         Article article = articleRepository.findById(uid).orElseThrow(PostNotFoundException::new);
+        article.addViewCount();
+        articleRepository.save(article);
         return ArticleDto.from(article);
     }
 

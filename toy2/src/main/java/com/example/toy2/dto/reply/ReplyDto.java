@@ -16,4 +16,20 @@ public class ReplyDto {
     private String date;
     private String nickname;
 
+    public static ReplyDto from(Reply reply){
+        String theDate;
+        if(reply.getUpDate() == null){
+            theDate = reply.getRegDate();
+        } else {
+            theDate = reply.getUpDate();
+        }
+        return ReplyDto.builder()
+                .uid(reply.getUid())
+                .content(reply.getContent())
+                .date(theDate)
+                .nickname(reply.getNickname())
+                .build();
+    }
+
+
 }

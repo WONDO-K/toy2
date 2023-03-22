@@ -9,7 +9,7 @@ import lombok.Getter;
 @Builder
 @ApiModel(value = "ArticleResponseDto",description = "게시글 정보 Dto")
 public class ArticleDto {
-    private long uid;
+    private Long uid;
     private String title;
     private String date;
     private String tag;

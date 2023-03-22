@@ -46,9 +46,6 @@ public class ArticleController {
     }
     @DeleteMapping("/delete/{uid}")
     @ApiOperation(value = "게시글 삭제", notes = "게시글을 삭제한다.")
-    @ApiResponses({
-            @ApiResponse(code = 200,message = "Succes", response = ArticleDto.class)
-    })
     public ResponseEntity<?> deleteArticle(
         @PathVariable @ApiParam(value = "게시글 번호 uid",required = true) Long uid
     ){

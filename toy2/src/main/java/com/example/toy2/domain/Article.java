@@ -44,4 +44,7 @@ public class Article {
     private User user;
 
 
+    public void addViewCount(){
+        this.view +=1;
+    }
 }

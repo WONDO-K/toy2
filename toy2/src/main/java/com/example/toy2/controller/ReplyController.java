@@ -25,4 +25,29 @@ public class ReplyController {
         replyService.createReply(uid,replyRequestDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    @PutMapping("/{article_uid}/{uid}")
+    @ApiOperation(value = "댓글 수정", notes = "댓글을 수정한다.")
+    public ResponseEntity<?> updateReply(
+            @RequestBody @ApiParam(value = "댓글 수정 Dto",required = true) ReplyRequestDto replyRequestDto,
+            @PathVariable @ApiParam(value = "게시글 번호 uid",required = true) Long article_uid,
+            @PathVariable @ApiParam(value = "댓글 번호 uid",required = true) Long uid
+
+    ){
+        replyService.updateReply(uid,replyRequestDto,article_uid);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @DeleteMapping("/delete/{uid}")
+    @ApiOperation(value = "댓글 삭제", notes = "댓글을 삭제한다.")
+    public ResponseEntity<?> deleteReply(@PathVariable Long uid){
+        replyService.deleteReply(uid);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/list/{uid}")
+    @ApiOperation(value = "댓글 리스트 조회", notes = "댓글 리스트를 조회한다.")
+    public ResponseEntity<?> getReplyList(
+            @PathVariable @ApiParam(value = "게시글 uid",required = true) Long uid
+    ){
+        return new ResponseEntity<>(replyService.getReplyList(uid),HttpStatus.OK);
+    }
 }

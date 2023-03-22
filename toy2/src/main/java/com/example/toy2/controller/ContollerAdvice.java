@@ -3,7 +3,6 @@ package com.example.toy2.controller;
 import com.example.toy2.dto.exception.CustomException;
 import com.example.toy2.dto.exception.ErrorCode;
 import com.example.toy2.dto.exception.ErrorResponse;
-import com.example.toy2.dto.exception.article.PostNotFoundException;
 import com.example.toy2.dto.exception.common.InvalidParameterException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
-public class ArticleContollerAdvice {
+public class ContollerAdvice {
 
     @ExceptionHandler(InvalidParameterException.class)
     protected ResponseEntity<ErrorResponse> handleInvalidParameterException(InvalidParameterException e){

@@ -3,12 +3,14 @@ package com.example.toy2.controller;
 import com.example.toy2.dto.TokenDto;
 import com.example.toy2.dto.exception.common.InvalidParameterException;
 import com.example.toy2.dto.exception.user.DuplicateEmailException;
+import com.example.toy2.dto.user.ChangeNicknameRequestDto;
 import com.example.toy2.dto.user.LoginRequestDto;
 import com.example.toy2.dto.user.SignUpRequestDto;
 import com.example.toy2.dto.exception.user.DuplicateIdException;
 import com.example.toy2.dto.exception.user.DuplicateNicknameException;
 import com.example.toy2.service.UserService;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
@@ -44,6 +46,14 @@ public class UserController {
         }
         userService.signup(requestDto);
         return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
+    }
+    @PutMapping("/changenick/{username}")
+    @ApiOperation(value = "닉네임 변경", notes = "닉네임을 변경한다.")
+    public ResponseEntity<String> changeNickename(
+            @RequestParam @ApiParam(value = "변경할 닉네임",required = true)String nickname
+            ){
+        userService.changeNickname(nickname);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/auth/check/nickname/{nickname}")

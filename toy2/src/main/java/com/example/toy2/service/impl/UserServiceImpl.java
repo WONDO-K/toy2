@@ -1,9 +1,11 @@
 package com.example.toy2.service.impl;
 
+import com.example.toy2.domain.Article;
 import com.example.toy2.domain.User;
 import com.example.toy2.domain.enums.Role;
 import com.example.toy2.dto.TokenDto;
 import com.example.toy2.dto.exception.user.UserNotFoundException;
+import com.example.toy2.dto.user.ChangeNicknameRequestDto;
 import com.example.toy2.dto.user.LoginRequestDto;
 import com.example.toy2.dto.user.SignUpRequestDto;
 import com.example.toy2.jwt.TokenProvider;
@@ -52,6 +54,14 @@ public class UserServiceImpl implements UserService {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void changeNickname(String nickname){
+        User user = getMyInfo();
+        user.changeNickname(nickname);
+        userRepository.save(user);
+    }
+
     @Override
     public boolean checkId(String username) {
         // user id로 검색 후 존재유무를 bool값으로 전달

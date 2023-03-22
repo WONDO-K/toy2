@@ -56,4 +56,8 @@ public class User {
     public void saveToken(String token) {
         this.token = token;
     }
+
+    public void changeNickname(String newNickname){
+        this.nickname = newNickname;
+    }
 }
