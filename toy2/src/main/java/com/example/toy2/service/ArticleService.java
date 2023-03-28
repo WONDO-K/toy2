@@ -19,4 +19,6 @@ public interface ArticleService {
     void deleteArticle(Long uid);
 
     ArticleDto getArticle(Long uid);
+
+    List<ArticleDto> getSortArticleList();
 }

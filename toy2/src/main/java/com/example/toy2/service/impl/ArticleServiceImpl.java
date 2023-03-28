@@ -71,6 +71,14 @@ public class ArticleServiceImpl implements ArticleService {
                 .collect(Collectors.toList());
         return list;
     }
+
+    @Override
+    public List<ArticleDto> getSortArticleList(){
+        List<ArticleDto> sortList = articleRepository.findAllByOrderByViewDesc().stream().map(m->ArticleDto.from(m))
+                .collect(Collectors.toList());
+        return sortList;
+    }
+
 //    @Override
 //    public ArticleDto getArticle(Long uid){
 //        ArticleDto readArticle = ArticleDto.from(articleRepository.findById(uid).orElseThrow(PostNotFoundException::new));
