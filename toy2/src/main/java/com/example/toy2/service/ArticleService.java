@@ -2,6 +2,7 @@ package com.example.toy2.service;
 
 
 import com.example.toy2.domain.Article;
+import com.example.toy2.domain.enums.ArticleTag;
 import com.example.toy2.dto.article.ArticleDto;
 import com.example.toy2.dto.article.ArticleRequestDto;
 
@@ -21,4 +22,6 @@ public interface ArticleService {
     ArticleDto getArticle(Long uid);
 
     List<ArticleDto> getSortArticleList();
+
+    List<ArticleDto> getTagArticleList(ArticleTag tag);
 }

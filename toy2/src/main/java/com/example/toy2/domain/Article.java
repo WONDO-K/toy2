@@ -33,6 +33,7 @@ public class Article {
     @Column(name = "up_date")
     private String upDate;
 
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "tag")
     private ArticleTag tag;
 

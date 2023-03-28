@@ -2,6 +2,7 @@ package com.example.toy2.service.impl;
 
 import com.example.toy2.domain.Article;
 import com.example.toy2.domain.User;
+import com.example.toy2.domain.enums.ArticleTag;
 import com.example.toy2.dto.article.ArticleDto;
 import com.example.toy2.dto.article.ArticleRequestDto;
 import com.example.toy2.dto.exception.article.PostNotFoundException;
@@ -77,6 +78,13 @@ public class ArticleServiceImpl implements ArticleService {
         List<ArticleDto> sortList = articleRepository.findAllByOrderByViewDesc().stream().map(m->ArticleDto.from(m))
                 .collect(Collectors.toList());
         return sortList;
+    }
+
+    @Override
+    public List<ArticleDto> getTagArticleList(ArticleTag tag){
+        List<ArticleDto> tagList = articleRepository.findAllByTag(tag).stream().map(m->ArticleDto.from(m))
+                .collect(Collectors.toList());
+        return tagList;
     }
 
 //    @Override

@@ -1,5 +1,6 @@
 package com.example.toy2.controller;
 
+import com.example.toy2.domain.enums.ArticleTag;
 import com.example.toy2.dto.article.ArticleDto;
 import com.example.toy2.dto.article.ArticleListDto;
 import com.example.toy2.dto.article.ArticleRequestDto;
@@ -32,6 +33,14 @@ public class ArticleController {
     @ApiOperation(value = "조회수 순으로 정렬된 리스트 조회", notes = "조회수 순으로 정렬된 리스트를 조회한다.")
     public ResponseEntity<?> getSortAticleList(){
         return new ResponseEntity<>(articleService.getSortArticleList(),HttpStatus.OK);
+    }
+
+    @GetMapping("/any/articleList/{tag}")
+    @ApiOperation(value = "태그별 게시글 리스트 조회", notes = "태그별 게시글 리스트를 조회한다.")
+    public ResponseEntity<?> getTagArticleList(
+            @PathVariable @ApiParam(value = "조회 기준 태그",required = true) ArticleTag tag
+    ){
+        return new ResponseEntity<>(articleService.getTagArticleList(tag), HttpStatus.OK);
     }
 
 
