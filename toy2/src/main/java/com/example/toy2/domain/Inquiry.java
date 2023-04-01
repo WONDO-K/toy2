@@ -29,13 +29,12 @@ public class Inquiry {
     private String content;
 
     @Column(name = "reg_date")
-    @CreatedDate
-    private LocalDateTime regDate;
+    private String regDate;
 
     @Column(name = "up_date")
-    @CreatedDate
-    private LocalDateTime upDate;
+    private String upDate;
 
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "tag")
     private InquiryTag tag;
 
