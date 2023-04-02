@@ -9,4 +9,6 @@ public interface InquiryService {
     void createInquiry(InquiryRequestDto inquiryRequestDto);
 
     List<InquiryDto> getInquiryList();
+
+    InquiryDto getInquiry(Long uid);
 }

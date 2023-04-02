@@ -2,6 +2,7 @@ package com.example.toy2.service.impl;
 
 import com.example.toy2.domain.Inquiry;
 import com.example.toy2.domain.User;
+import com.example.toy2.dto.exception.article.PostNotFoundException;
 import com.example.toy2.dto.exception.inquiry.InquiryDto;
 import com.example.toy2.dto.exception.inquiry.InquiryRequestDto;
 import com.example.toy2.repository.InquiryRepository;
@@ -46,6 +47,12 @@ public class InquiryServiceImpl implements InquiryService {
         List<InquiryDto> inquiryList = inquiryRepository.findAll().stream().map(m->InquiryDto.from(m))
                 .collect(Collectors.toList());
         return inquiryList;
+    }
+
+    @Override
+    public InquiryDto getInquiry(Long uid) {
+        Inquiry inquiry = inquiryRepository.findById(uid).orElseThrow(PostNotFoundException::new);
+        return InquiryDto.from(inquiry);
     }
 
 

@@ -1,6 +1,7 @@
 package com.example.toy2.controller;
 
 
+import com.example.toy2.dto.exception.inquiry.InquiryDto;
 import com.example.toy2.dto.exception.inquiry.InquiryRequestDto;
 import com.example.toy2.service.InquiryService;
 import io.swagger.annotations.ApiOperation;
@@ -29,5 +30,11 @@ public class InquiryController {
     @ApiOperation(value = "문의사항 리스트 조회",notes = "문의사항 리스트를 조회한다.")
     public ResponseEntity<?> getInquiryList(){
         return new ResponseEntity<>(inquiryService.getInquiryList(),HttpStatus.OK);
+    }
+
+    @GetMapping("{uid}")
+    @ApiOperation(value = "문의사항 게시글 조회",notes = "문의사항 게시글을 조회한다.")
+    public ResponseEntity<InquiryDto> getInquiry(@PathVariable Long uid){
+        return new ResponseEntity<>(inquiryService.getInquiry(uid),HttpStatus.OK);
     }
 }
