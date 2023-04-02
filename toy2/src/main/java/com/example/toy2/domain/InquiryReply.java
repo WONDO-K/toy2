@@ -24,16 +24,21 @@ public class InquiryReply {
     @Column(name = "content")
     private String content;
 
+    @Column(name = "nickname")
+    private String nickname;
+
     @Column(name = "reg_date")
-    @CreatedDate
-    private LocalDateTime regDate;
+    private String regDate;
 
     @Column(name = "up_date")
-    @CreatedDate
-    private LocalDateTime upDate;
+    private String upDate;
 
     @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_uid")
     private User user;
+
+    @ManyToOne(targetEntity = Inquiry.class,fetch = FetchType.LAZY)
+    @JoinColumn(name = "Inquiry_uid")
+    private Inquiry inquiry;
 
 }
