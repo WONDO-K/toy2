@@ -1,7 +1,6 @@
 package com.example.toy2.service;
 
-import com.example.toy2.domain.Inquiry;
-import com.example.toy2.dto.exception.inquiryReply.InquiryReplyRequestDto;
+import com.example.toy2.dto.inquiryReply.InquiryReplyRequestDto;
 
 public interface InquiryReplyService {
 

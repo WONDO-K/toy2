@@ -1,6 +1,6 @@
 package com.example.toy2.controller;
 
-import com.example.toy2.dto.exception.inquiryReply.InquiryReplyRequestDto;
+import com.example.toy2.dto.inquiryReply.InquiryReplyRequestDto;
 import com.example.toy2.service.InquiryReplyService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

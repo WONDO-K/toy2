@@ -3,12 +3,11 @@ package com.example.toy2.service.impl;
 import com.example.toy2.domain.Inquiry;
 import com.example.toy2.domain.User;
 import com.example.toy2.dto.exception.article.PostNotFoundException;
-import com.example.toy2.dto.exception.inquiry.InquiryDto;
-import com.example.toy2.dto.exception.inquiry.InquiryRequestDto;
+import com.example.toy2.dto.inquiry.InquiryDto;
+import com.example.toy2.dto.inquiry.InquiryRequestDto;
 import com.example.toy2.repository.InquiryRepository;
 import com.example.toy2.service.InquiryService;
 import com.example.toy2.service.UserService;
-import io.swagger.models.auth.In;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,16 +18,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-@Service
-@RequiredArgsConstructor
-@Transactional
-public class InquiryServiceImpl implements InquiryService {
+    @Service
+    @RequiredArgsConstructor
+    @Transactional
+    public class InquiryServiceImpl implements InquiryService {
 
-    private final InquiryRepository inquiryRepository;
+        private final InquiryRepository inquiryRepository;
 
-    private final UserService userService;
+        private final UserService userService;
 
-    @Override
+        @Override
     public void createInquiry(InquiryRequestDto inquiryRequestDto){
         User user = userService.getMyInfo();
         String regDate = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(LocalDateTime.now()).toString();

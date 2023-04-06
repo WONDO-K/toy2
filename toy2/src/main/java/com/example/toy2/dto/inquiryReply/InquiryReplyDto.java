@@ -1,4 +1,4 @@
-package com.example.toy2.dto.exception.inquiryReply;
+package com.example.toy2.dto.inquiryReply;
 
 import com.example.toy2.domain.InquiryReply;
 import io.swagger.annotations.ApiModel;

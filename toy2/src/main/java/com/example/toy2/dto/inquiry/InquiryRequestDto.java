@@ -1,4 +1,4 @@
-package com.example.toy2.dto.exception.inquiry;
+package com.example.toy2.dto.inquiry;
 
 import com.example.toy2.domain.enums.InquiryTag;
 import io.swagger.annotations.ApiModel;

@@ -1,4 +1,4 @@
-package com.example.toy2.dto.exception.inquiry;
+package com.example.toy2.dto.inquiry;
 
 
 
