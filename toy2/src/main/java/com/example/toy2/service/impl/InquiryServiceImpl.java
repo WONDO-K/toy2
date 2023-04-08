@@ -9,12 +9,15 @@ import com.example.toy2.repository.InquiryRepository;
 import com.example.toy2.service.InquiryService;
 import com.example.toy2.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
+import javax.security.sasl.AuthenticationException;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -26,19 +29,44 @@ import java.util.stream.Collectors;
         private final InquiryRepository inquiryRepository;
 
         private final UserService userService;
-
         @Override
-    public void createInquiry(InquiryRequestDto inquiryRequestDto){
-        User user = userService.getMyInfo();
-        String regDate = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(LocalDateTime.now()).toString();
-        Inquiry inquiry = Inquiry.builder()
-                .title(inquiryRequestDto.getTitle())
-                .content(inquiryRequestDto.getContent())
-                .tag(inquiryRequestDto.getTag())
-                .regDate(regDate)
-                .user(user)
-                .build();
-        inquiryRepository.save(inquiry);
+        public void createInquiry(InquiryRequestDto inquiryRequestDto){
+            User user = userService.getMyInfo();
+            String regDate = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(LocalDateTime.now()).toString();
+            Inquiry inquiry = Inquiry.builder()
+                    .title(inquiryRequestDto.getTitle())
+                    .content(inquiryRequestDto.getContent())
+                    .tag(inquiryRequestDto.getTag())
+                    .regDate(regDate)
+                    .user(user)
+                    .build();
+            inquiryRepository.save(inquiry);
+    }
+    @Override
+    public void updateInquiry(Long uid,InquiryRequestDto inquiryRequestDto){
+        Optional<Inquiry> inquiry = inquiryRepository.findById(uid);
+        if (inquiry.isPresent()){
+            String upDate = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(LocalDateTime.now()).toString();
+            if (inquiry.get().getUser() == userService.getMyInfo()){
+                Inquiry newInquiry = Inquiry.builder()
+                        .uid(uid)
+                        .title(inquiryRequestDto.getTitle())
+                        .content(inquiryRequestDto.getContent())
+                        .tag(inquiryRequestDto.getTag())
+                        .upDate(upDate)
+                        .user(userService.getMyInfo())
+                        .build();
+                inquiryRepository.save(newInquiry);
+            }
+        }
+    }
+    @Override
+    public void deleteInquiry(Long uid){
+            if (inquiryRepository.findById(uid).get().getUser() != userService.getMyInfo()){
+                throw new AccessDeniedException("작성자가 아닌 사람은 삭제할 수 없습니다.");
+            } else {
+                inquiryRepository.deleteById(uid);
+            }
     }
 
     @Override

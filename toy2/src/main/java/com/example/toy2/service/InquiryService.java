@@ -11,4 +11,8 @@ public interface InquiryService {
     List<InquiryDto> getInquiryList();
 
     InquiryDto getInquiry(Long uid);
+
+    void updateInquiry(Long uid,InquiryRequestDto inquiryRequestDto);
+
+    void deleteInquiry(Long uid);
 }
